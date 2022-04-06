@@ -1,4 +1,5 @@
 import os
+import environ
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -14,6 +15,9 @@ SECRET_KEY = "hf178p075q1zi_!$o469jye^i+5sk=g4#*selbu6kg#zfesr42"
 DEBUG = True
 
 ALLOWED_HOSTS = ["0.0.0.0", "127.0.0.1"]
+
+
+env = environ.Env()
 
 
 # Application definition
@@ -68,8 +72,11 @@ ASGI_APPLICATION = "config.asgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+        'ENGINE': env('DATABASE_MASTER_ENGINE', default='django.db.backends.sqlite3'),
+        'NAME': env('DATABASE_MASTER_NAME', default=BASE_DIR + '/db.sqlite3'),
+        'USER': env('DATABASE_MASTER_USER', default=''),
+        'PASSWORD': env('DATABASE_MASTER_PASSWORD', default=''),
+        'HOST': env('DATABASE_MASTER_HOST', default=''),
     }
 }
 

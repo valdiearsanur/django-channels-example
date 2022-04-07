@@ -11,15 +11,17 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "hf178p075q1zi_!$o469jye^i+5sk=g4#*selbu6kg#zfesr42"
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = ["0.0.0.0", "127.0.0.1"]
-
+# Environ
 
 env = environ.Env()
 environ.Env.read_env(os.path.join(BASE_DIR, 'config/.env'))
 
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True
+
+ALLOWED_HOSTS = env('ALLOWED_HOSTS', default=['127.0.0.1','localhost','gojekstage.go-jek.com','nirius.go-jek.com'])
 
 # Application definition
 

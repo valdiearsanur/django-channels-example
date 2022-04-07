@@ -18,6 +18,7 @@ ALLOWED_HOSTS = ["0.0.0.0", "127.0.0.1"]
 
 
 env = environ.Env()
+environ.Env.read_env(os.path.join(BASE_DIR, 'config/.env'))
 
 
 # Application definition

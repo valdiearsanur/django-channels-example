@@ -7,7 +7,7 @@ from .models import ProjectViewers
 class ProjectConsumer(JsonWebsocketConsumer):
 
     def __init__(self, *args, **kwargs):
-        super().__init__(args, kwargs)
+        super(ProjectConsumer, self).__init__(*args, **kwargs)
         self.project_slug = None
         self.project = None
         self.user = None
@@ -23,8 +23,7 @@ class ProjectConsumer(JsonWebsocketConsumer):
             return user._wrapped
         return None
 
-    def broadcast_current_editor(self, event):
-        event['username'] = ProjectViewers.objects.get_editor_username(self.project)
+    def project_collaborator(self, event):
         self.send_json(event)
 
     def connect(self):
@@ -39,7 +38,11 @@ class ProjectConsumer(JsonWebsocketConsumer):
 
         async_to_sync(self.channel_layer.group_send)(
             'collaboration',
-            { 'type': 'broadcast_current_editor' }
+            {
+                'type': 'project_collaborator',
+                'event': 'find_editor',
+                'username': ProjectViewers.objects.get_editor_username(self.project)
+            }
         )
 
         self.viewer = ProjectViewers.objects.set_editor_or_viewer(self.project, self.user)

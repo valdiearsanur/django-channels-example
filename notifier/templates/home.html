@@ -10,11 +10,13 @@
     <ul id="notifylist"></ul>
 
     <form id="main-form">
-      <label for="fname">First name:</label><br>
+      <h2>Dummy form here</h2>
+      <p>Just an illustration whether the functional is "enabled for editor" and "disabled for non editor"</p>
+      <label for="fname">some field:</label><br>
       <input type="text" id="fname" name="fname" value="John"><br>
-      <label for="lname">Last name:</label><br>
+      <label for="lname">another field:</label><br>
       <input type="text" id="lname" name="lname" value="Lennon">
-      <button>update form</button>
+      <button>some submit button</button>
     </form>
     <script>
 
@@ -26,6 +28,8 @@
       }
     }
 
+    toggle_lock_form(true);
+
     document.addEventListener('DOMContentLoaded', function() {
       const webSocketBridge = new channels.WebSocketBridge();
       const nl = document.querySelector("#notifylist");
@@ -33,15 +37,29 @@
       webSocketBridge.connect('/ws/collaborators/project-1/');
       webSocketBridge.listen(function(action, stream) {
         console.log("RESPONSE:", action);
-        if (action.username == "{{ request.user.username }}") {
-          toggle_lock_form(false);
-        } else {
-          toggle_lock_form(true);
-        }
-        if (action.event == "New User") {
-          var el = document.createElement("li");
-          el.innerHTML = `New user <b>${action.username}</b> has joined!`;
-          nl.appendChild(el);
+        if (action.type == "project_collaborator") {
+          if (action.event == "new_editor" || action.event == "find_editor") {
+            var el = document.createElement("li");
+            var init_state = action.event=="find_editor"?'[Init State] ':'';
+            el.innerHTML = `${init_state}Current editor is <b>${action.username}</b>`;
+            nl.appendChild(el);
+
+            if (action.username == "{{ request.user.username }}") {
+              toggle_lock_form(false);
+            } else {
+              toggle_lock_form(true);
+            }
+          }
+          if (action.event == "exit_collaborator") {
+            var el = document.createElement("li");
+            el.innerHTML = `A user <b>${action.username}</b> has left!`;
+            nl.appendChild(el);
+          }
+          if (action.event == "new_collaborator") {
+            var el = document.createElement("li");
+            el.innerHTML = `New user <b>${action.username}</b> has joined!`;
+            nl.appendChild(el);
+          }
         }
       })
       document.ws = webSocketBridge; /* for debugging */

@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "f9437ce4a314533e79a23a43c335873e9db4479ec07b91ee8c972d69de28caea"
+            "sha256": "a64faaf0df6d252bfa683f115e183e211ce22eab822aadd39d453410764fbe6a"
         },
         "pipfile-spec": 6,
         "requires": {},
@@ -264,19 +264,19 @@
         },
         "channels": {
             "hashes": [
-                "sha256:08e756406d7165cb32f6fc3090c0643f41ca9f7e0f7fada0b31194662f20f414",
-                "sha256:80a5ad1962ae039a3dcc0a5cb5212413e66e2f11ad9e9db8004834436daf3400"
+                "sha256:5cdd9c6b9ee663cdf1bbb00de7cdab885a3c418f9d32a29f04b09498828020f6",
+                "sha256:b02e150b48704ec3607d4168402ac5c26138dd183fcdb7f2aeb965e6e19fd558"
             ],
             "index": "pypi",
-            "version": "==2.4.0"
+            "version": "==3.0.1"
         },
         "channels-redis": {
             "hashes": [
-                "sha256:3ce9832b64a2d7f950dd11e4f0dca784de7cbee99e95a3c345a1460c8878b682",
-                "sha256:41ee0af352d3b6b31a6b613985b51dc5695d2da60688c38e6caa0a1772735a9f"
+                "sha256:5dffd4cc16174125bd4043fc8fe7462ca7403cf801d59a9fa7410ed101fa6a57",
+                "sha256:6e4565b7c11c6bcde5d48556cb83bd043779697ff03811867d2f895aa6170d56"
             ],
             "index": "pypi",
-            "version": "==3.1.0"
+            "version": "==3.4.0"
         },
         "constantly": {
             "hashes": [
@@ -313,11 +313,11 @@
         },
         "daphne": {
             "hashes": [
-                "sha256:1ca46d7419103958bbc9576fb7ba3b25b053006e22058bc97084ee1a7d44f4ba",
-                "sha256:aa64840015709bbc9daa3c4464a4a4d437937d6cda10a9b51e913eb319272553"
+                "sha256:76ffae916ba3aa66b46996c14fa713e46004788167a4873d647544e750e0e99f",
+                "sha256:a9af943c79717bc52fe64a3c236ae5d3adccc8b5be19c881b442d2c3db233393"
             ],
             "markers": "python_version >= '3.6'",
-            "version": "==2.5.0"
+            "version": "==3.0.2"
         },
         "datetime": {
             "hashes": [
